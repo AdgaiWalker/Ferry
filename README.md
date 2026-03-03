@@ -133,4 +133,4 @@ Project_Root/
 - **通用框架**：MIT License（允许自由修改与商用）。
 - **私有实现**：基于本框架衍生的个人知识库与私有数据归开发者所有。
 
-*Copyright (c) 2024 FerrySpec Authors*
+*Copyright (c) 2026 FerrySpec Authors*
