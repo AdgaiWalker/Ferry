@@ -1,5 +1,5 @@
 # FerrySpec ⛴️
-
+**通过造一个世界通用自适应skill工程框架，将ai应用从虚拟世界到物理世界，从必然王国到自由王国**
 **World Adaptive Protocol for Entropy Reduction.**
 
 基于辩证唯物主义的通用熵减协议，AI的当前局限，确立了AI辅助与人的责任决策权。
