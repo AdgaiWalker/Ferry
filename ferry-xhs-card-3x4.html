@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ferry Xiaohongshu Card</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@700;900&family=Noto+Sans+SC:wght@400;500;700&family=Oswald:wght@500;700&family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --paper: #f5f3ed;
+        --ink: #141414;
+        --muted: #55524b;
+        --accent: #c45a2a;
+        --accent-dark: #8a3412;
+        --line: rgba(20, 20, 20, 0.14);
+        --plane: rgba(20, 20, 20, 0.05);
+        --soft: rgba(196, 90, 42, 0.11);
+        --canvas-width: 1500px;
+        --canvas-height: 2000px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--paper);
+      }
+
+      body {
+        font-family: "Inter", "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+        color: var(--ink);
+      }
+
+      .frame {
+        width: var(--canvas-width);
+        height: var(--canvas-height);
+      }
+
+      .card {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding: 46px 48px 42px;
+        background:
+          radial-gradient(circle at top left, rgba(196, 90, 42, 0.08), transparent 34%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.32), transparent 24%),
+          var(--paper);
+        overflow: hidden;
+        display: grid;
+        grid-template-rows: auto auto auto 1fr auto;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.04;
+        background-image:
+          radial-gradient(circle at 20% 20%, rgba(0, 0, 0, 0.85) 0.5px, transparent 0.8px),
+          radial-gradient(circle at 80% 40%, rgba(0, 0, 0, 0.7) 0.4px, transparent 0.7px);
+        background-size: 8px 8px, 11px 11px;
+      }
+
+      .bg-word {
+        position: absolute;
+        top: 112px;
+        right: 34px;
+        font-family: "Oswald", "Inter", sans-serif;
+        font-size: 186px;
+        line-height: 0.9;
+        letter-spacing: 0.04em;
+        color: rgba(20, 20, 20, 0.06);
+        user-select: none;
+      }
+
+      .topbar {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .meta {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .meta strong {
+        color: var(--ink);
+      }
+
+      .hero {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        gap: 18px;
+        padding: 34px 0 30px;
+      }
+
+      .eyebrow {
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent-dark);
+      }
+
+      .title {
+        margin: 0;
+        display: grid;
+        gap: 8px;
+      }
+
+      .title-en {
+        font-family: "Oswald", "Inter", sans-serif;
+        font-size: 116px;
+        line-height: 0.88;
+        letter-spacing: 0.02em;
+      }
+
+      .title-cn {
+        font-family: "Noto Serif SC", "Songti SC", serif;
+        font-size: 56px;
+        line-height: 1.08;
+        letter-spacing: -0.03em;
+        max-width: 900px;
+      }
+
+      .deck {
+        max-width: 1040px;
+        font-size: 29px;
+        line-height: 1.42;
+        font-weight: 500;
+      }
+
+      .insight-strip {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 18px;
+        margin-bottom: 22px;
+      }
+
+      .strip-left,
+      .strip-right {
+        min-height: 188px;
+        padding: 22px 24px;
+        border-top: 6px solid var(--accent);
+      }
+
+      .strip-left {
+        background: var(--soft);
+      }
+
+      .strip-right {
+        background: var(--plane);
+      }
+
+      .label {
+        margin: 0 0 8px;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .strip-left p,
+      .strip-right p,
+      .strip-left li,
+      .strip-right li,
+      .module p,
+      .module li,
+      .footer p {
+        font-size: 20px;
+        line-height: 1.56;
+        margin: 0;
+      }
+
+      .strip-left ul,
+      .strip-right ul,
+      .module ul {
+        margin: 10px 0 0;
+        padding-left: 24px;
+      }
+
+      .main {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        grid-template-columns: 1.08fr 0.92fr;
+        gap: 18px;
+        align-self: stretch;
+      }
+
+      .module {
+        padding: 22px 24px;
+        background: rgba(255, 255, 255, 0.34);
+        border-top: 6px solid var(--ink);
+        min-height: 0;
+      }
+
+      .module-heavy {
+        display: grid;
+        grid-template-rows: auto auto 1fr;
+        gap: 12px;
+        min-height: 620px;
+      }
+
+      .heavy-title {
+        margin: 0;
+        font-family: "Noto Serif SC", "Songti SC", serif;
+        font-size: 40px;
+        line-height: 1.06;
+      }
+
+      .heavy-quote {
+        font-size: 25px;
+        line-height: 1.46;
+        font-weight: 600;
+        max-width: 90%;
+      }
+
+      .right-stack {
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        gap: 18px;
+      }
+
+      .subgrid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-top: 18px;
+      }
+
+      .subgrid .module {
+        min-height: 190px;
+      }
+
+      .numbered {
+        display: grid;
+        gap: 10px;
+      }
+
+      .numbered-row {
+        display: grid;
+        grid-template-columns: 42px 1fr;
+        gap: 10px;
+        align-items: start;
+      }
+
+      .num {
+        font-family: "Oswald", "Inter", sans-serif;
+        font-size: 34px;
+        line-height: 1;
+        color: var(--accent-dark);
+      }
+
+      .footer {
+        position: relative;
+        z-index: 1;
+        margin-top: 18px;
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
+        display: grid;
+        grid-template-columns: 1.12fr 0.88fr;
+        gap: 18px;
+        align-self: end;
+      }
+
+      .footer-left {
+        font-size: 18px;
+        line-height: 1.6;
+      }
+
+      .footer-right {
+        display: grid;
+        gap: 8px;
+        justify-content: end;
+        text-align: right;
+      }
+
+      .footer-right .meta {
+        font-size: 12px;
+      }
+
+      .rule {
+        width: 116px;
+        height: 6px;
+        background: var(--accent);
+      }
+
+      @media (max-width: 900px) {
+        html,
+        body {
+          width: auto;
+          height: auto;
+        }
+
+        .frame {
+          width: auto;
+          height: auto;
+        }
+
+        .card {
+          padding: 24px;
+        }
+
+        .bg-word {
+          display: none;
+        }
+
+        .title-en {
+          font-size: 64px;
+        }
+
+        .title-cn {
+          font-size: 34px;
+        }
+
+        .deck {
+          font-size: 19px;
+        }
+
+        .insight-strip,
+        .main,
+        .subgrid,
+        .footer {
+          grid-template-columns: 1fr;
+        }
+
+        .right-stack {
+          grid-template-rows: auto;
+        }
+
+        .strip-left p,
+        .strip-right p,
+        .strip-left li,
+        .strip-right li,
+        .module p,
+        .module li,
+        .footer p {
+          font-size: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="frame">
+      <article class="card">
+        <div class="bg-word">WORLD<br />KERNEL</div>
+
+        <header class="topbar">
+          <div class="meta"><strong>FERRY</strong> / HUMAN + AI PROTOCOL</div>
+          <div class="meta">TYPE / THEORY FRAMEWORK</div>
+        </header>
+
+        <section class="hero">
+          <div class="eyebrow">World Adaptive Protocol for Entropy Reduction</div>
+          <h1 class="title">
+            <span class="title-en">FERRY</span>
+            <span class="title-cn">不是工具，是人机协作协议</span>
+          </h1>
+          <div class="deck">
+            它要处理的不是一次 prompt，而是意图、执行、记忆、进化怎样接成一条链。
+          </div>
+        </section>
+
+        <section class="insight-strip">
+          <div class="strip-left">
+            <p class="label">Core Judgment</p>
+            <p>很多问题不是不会做，而是这些东西总是断开的：</p>
+            <ul>
+              <li>人的意图和现实产出</li>
+              <li>一次对话和下一次复用</li>
+              <li>人的判断和 AI 的执行</li>
+            </ul>
+          </div>
+          <div class="strip-right">
+            <p class="label">What Ferry Tries To Do</p>
+            <p>把高熵的混乱、未知和情绪，逐步转成低熵的有序、已知和产出。</p>
+          </div>
+        </section>
+
+        <section class="main">
+          <section class="module module-heavy">
+            <p class="label">Manifesto</p>
+            <h2 class="heavy-title">FerrySpec 不是一个工具，不是一个平台，不是一个普通框架。</h2>
+            <div class="heavy-quote">
+              Ferry 更像一个渡者。它渡人的经验、项目的记忆、方法的传承，也渡人机协作中那些本来很容易断掉的东西。
+            </div>
+            <p>
+              它不是在替人做价值判断，而是在蓝图、现实、记忆之间搭一座桥，让协作不再总是从零开始。
+            </p>
+            <div class="numbered">
+              <div class="numbered-row">
+                <div class="num">01</div>
+                <div>对抗断裂：连接主观意图与客观现实。</div>
+              </div>
+              <div class="numbered-row">
+                <div class="num">02</div>
+                <div>对抗熵增：把混乱情绪与想法转成结构化产出。</div>
+              </div>
+              <div class="numbered-row">
+                <div class="num">03</div>
+                <div>对抗遗忘：通过日志与复盘，让系统持续进化。</div>
+              </div>
+            </div>
+          </section>
+
+          <div class="right-stack">
+            <section class="module">
+              <p class="label">Trinity</p>
+              <p>Ferry 把长期协作拆成三个可复用部件，不让方法只停在一次对话里。</p>
+              <div class="numbered">
+                <div class="numbered-row">
+                  <div class="num">S</div>
+                  <div><strong>Skill</strong>：定规矩，定义宪法、能力、工具库。</div>
+                </div>
+                <div class="numbered-row">
+                  <div class="num">F</div>
+                  <div><strong>Flow</strong>：干活，在规则指导下执行并过闸门。</div>
+                </div>
+                <div class="numbered-row">
+                  <div class="num">L</div>
+                  <div><strong>Log</strong>：长记性，记录阻滞，回流成下一次进化。</div>
+                </div>
+              </div>
+            </section>
+
+            <section class="module">
+              <p class="label">Where It Fits</p>
+              <p>它不是只为编程准备，而是把“蓝图 -> 现实”的问题抽象成通用世界协议。</p>
+              <ul>
+                <li>编程开发：PRD / API → SourceCode</li>
+                <li>创意写作：大纲 / 人设 → 正文章节</li>
+                <li>法律实务：案件策略 → 证据 / 文书</li>
+                <li>个人成长：年度 OKR → 每日行动</li>
+              </ul>
+            </section>
+          </div>
+        </section>
+
+        <section class="subgrid">
+          <section class="module">
+            <p class="label">Dispatch</p>
+            <p>P0-P4 不是流程装饰，而是状态调度：混沌、规划、执行、修正、进化。</p>
+          </section>
+          <section class="module">
+            <p class="label">Boundary</p>
+            <p>AI 给建议，人类拍板担责。不可逆操作必须回到人的主权之下。</p>
+            <p style="margin-top:10px;">它要解决的是协作效能，不是替代人的主权。</p>
+          </section>
+        </section>
+
+        <footer class="footer">
+          <div class="footer-left">
+            <div class="rule"></div>
+            <p>
+              <strong>一句话：</strong>
+              Ferry 想把蓝图、现实、记忆重新接成一条可持续的人机协作链。
+            </p>
+          </div>
+          <div class="footer-right">
+            <div class="meta">LICENSE / CC BY 4.0</div>
+            <div class="meta">GITHUB / ADGAIWALKER/FERRY</div>
+          </div>
+        </footer>
+      </article>
+    </main>
+  </body>
+</html>
