@@ -8,7 +8,7 @@
 全球自适应熵减协议。
 
 ![类型](https://img.shields.io/badge/类型-理论框架-blue?style=flat-square)
-![状态](https://img.shields.io/badge/状态-v1.0.0-success?style=flat-square)
+![状态](https://img.shields.io/badge/状态-v1.1.0-success?style=flat-square)
 ![许可](https://img.shields.io/badge/许可-CC_BY_4.0-green?style=flat-square)
 
 许可：CC BY 4.0
